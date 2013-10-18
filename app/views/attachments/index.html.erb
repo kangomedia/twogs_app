@@ -1,0 +1,9 @@
+<h1>Attachments</h1>
+
+<div id="attachments">
+	<% @attachments.each do |attachment| %>
+		<div class="attachment">
+			<%= simple_format attachment.file %>
+		</div>
+	<% end %>
+</div>

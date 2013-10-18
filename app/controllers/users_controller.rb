@@ -9,6 +9,9 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
+    @attachable = @user
+    @attachments = @attachable.attachments
+    @attachment = Attachment.new
   end
   
   def index
@@ -54,7 +57,6 @@ class UsersController < ApplicationController
     
     def user_params
       params.require(:user).permit(:name, :username, :password, :password_confirmation, :admin)
-    end
-  
+    end  
   
 end

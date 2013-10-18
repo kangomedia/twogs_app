@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password,  length: { minimum: 6 }
   
+  has_many :attachments, as: :attachable, :dependent => :destroy
+  accepts_nested_attributes_for :attachments
+  
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end
@@ -20,4 +23,9 @@ class User < ActiveRecord::Base
     def create_remember_token
       self.remember_token = User.encrypt(User.new_remember_token)
     end
+    
+    def user_params
+      params.require(:user).permit(:name, :username, :password, :password_confirmation, :admin, :attachments_attributes [:file, :attachable_id, :attachable_type])
+    end
+    
 end
