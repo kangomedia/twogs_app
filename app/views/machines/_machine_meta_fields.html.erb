@@ -1,0 +1,17 @@
+
+	<%= f.label "Part Name" %>
+	<%= f.text_field :meta_key %>
+
+	<%= f.label "Details" %>
+	<%= f.text_field :meta_value %>
+	
+	<% if f.object.attachment %>
+		<% if !f.object.attachment.file_file_name.nil? %>
+			<%= image_tag f.object.attachment.file.url(:thumb) %>
+		<% end %>
+	<% end %>
+	
+	<%= f.fields_for :attachment do |attachment| %>
+			<%= attachment.label "Image" %>
+			<%= attachment.file_field :file %>
+	<% end %>

@@ -1,8 +1,7 @@
 TwogsApp::Application.routes.draw do
-  resources :users do
-    resources :attachments
-  end
-    
+  resources :users 
+  resources :machines
+  resources :machine_metas
   resources :sessions, only: [:new, :create, :destroy]
   
   root 'static_pages#home'

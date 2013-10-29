@@ -2,7 +2,8 @@
 
 <div class="row">
 	<div class="span6 offset3">
-		<%= form_for @user, :html => {:multipart => true} do |f| %>
+		<%= form_for(@user, :html => { :multipart => true }) do |f| %>
+			<% @user.build_attachment %>
 		  	<%= render 'shared/error_messages', object: f.object %>
 
 			<%= f.label :name %>
@@ -17,10 +18,8 @@
 			<%= f.label :password_confirmation, "Confirmation" %>
 			<%= f.password_field :password_confirmation %>
 			
-			<%= f.fields_for :attachments do |builder| %>
-				<fieldset>
-					<%= builder.file_field :file %>
-				</fieldset> 
+			<%= f.fields_for :attachment do |attachment| %>
+				<%= render "shared/attachment_fields", :f => attachment %>
 			<% end %>
 
 			<%= f.submit "Add User", class: "btn btn-large btn-primary" %>

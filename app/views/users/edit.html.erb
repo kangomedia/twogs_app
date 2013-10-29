@@ -2,7 +2,11 @@
 
 <div class="row">
 	<div class="span6 offset3">
-		<%= form_for(@user) do |f| %>
+		<%= form_for(@user, :html => { :multipart => true }) do |f| %>
+			<% if !@user.attachment %>
+				<% @user.build_attachment %>
+			<% end %>
+			
 			<%= render 'shared/error_messages', object: f.object %>
 			
 			<%= f.label :name %>
@@ -17,13 +21,22 @@
 			<%= f.label :password_confirmation, "Confirm Password" %>
 			<%= f.password_field :password_confirmation %>
 			
+			<% if !(@user.attachment.id).nil? %>
+				<%= image_tag(@user.attachment.file.url) %>
+			<% end %>
+			
+			
+			<%= f.fields_for :attachment do |attachment| %>
+				<%= render "shared/attachment_fields", :f => attachment %>
+			<% end %>
+			
 			<% if current_user.admin? %>
 				<div class="form-inline">
 					<%= f.check_box :admin, {}, "t", "f" %>	<%= f.label :admin %>
 				</div>
 			<% end %>
 
-				<%= f.submit "Save Changes", class: "btn btn-large btn-primary" %>
+				<%= f.submit "Update User", class: "btn btn-large btn-primary" %>
 		<% end %>
 	</div>
 </div>

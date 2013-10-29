@@ -9,9 +9,6 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
-    @attachable = @user
-    @attachments = @attachable.attachments
-    @attachment = Attachment.new
   end
   
   def index
@@ -22,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
-  def update
+  def update    
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
@@ -56,7 +53,7 @@ class UsersController < ApplicationController
     end
     
     def user_params
-      params.require(:user).permit(:name, :username, :password, :password_confirmation, :admin)
+      params.require(:user).permit(:name, :username, :password, :password_confirmation, :admin, attachment_attributes: [:id, :file])
     end  
   
 end

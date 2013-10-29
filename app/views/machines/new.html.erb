@@ -1,0 +1,41 @@
+<h1>Add Equipment</h1>
+
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@machine, :html => { :multipart => true }) do |f| %>
+		  	<%= render 'shared/error_messages', object: f.object %>
+
+			<%= f.label :make %>
+			<%= f.text_field :make %>
+
+			<%= f.label :model %>
+			<%= f.text_field :model %>
+
+			<%= f.label :year %>
+			<%= f.select :year, ((Time.zone.now.year - 40)..(Time.zone.now.year + 1)).to_a.reverse %>
+			
+			<%= f.label :serial %>
+			<%= f.text_field :serial %>
+			
+			<%= f.label :status %>
+			<%= f.select :status, options_for_select([['Active', 1], ['Inactive', 2]]), :prompt => 'Select One' %>
+			
+			<%= f.fields_for :attachments do |attachment| %>
+				<%= render "shared/attachment_fields", :f => attachment %>
+			<% end %>
+			
+			<%= f.fields_for :machine_metas do |meta| %>
+				<fieldset>
+					<%= render "machine_meta_fields", :f => meta %>
+					<%= meta.hidden_field :_destroy %>
+					<% if @machine.machine_metas.empty? %>
+						<%= link_to "remove", '#', class: "remove_fields" %>
+					<% end %>
+				</fieldset>
+			<% end %>
+			<%= link_to_add_fields "Add Part", f, :machine_metas %>
+
+			<%= f.submit "Add Equipment", class: "btn btn-large btn-primary" %>
+		<% end %>
+	</div>
+</div>

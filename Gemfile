@@ -57,7 +57,7 @@ group :production do
   gem 'rails_12factor', '0.0.2'
 end
 
-gem 'carrierwave'
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '3.0.1'

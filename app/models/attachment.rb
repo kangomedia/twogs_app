@@ -1,10 +1,9 @@
 class Attachment < ActiveRecord::Base
   belongs_to :attachable, polymorphic: true
-  mount_uploader :file, AttachmentUploader
-  
-private
+  has_attached_file :file, :styles => { :small => "50x50>", :thumb => "100x100>", :medium => "300x300>" }, :default_url => "/images/default_avatar.png"
 
+private
   def attachment_params
-    params.require(:attachment).permit(:file, :attachable_id, :attachable_type)
+    params.require(:attachment).permit(:file)
   end
 end
