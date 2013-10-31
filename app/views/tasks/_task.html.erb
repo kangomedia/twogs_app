@@ -1,0 +1,15 @@
+<li>
+	<%= task.name %> 
+	<% if task.due_date %>
+		<%= task.due_date.strftime("%B %e, %Y") %>
+		Created at: <%= task.created_at %>
+	<% end %>
+	<% if task.completed == false %>
+		<%= button_to "Done", polymorphic_path([@taskable, task], 
+									 :action => 'complete'), :method => :put, remote: true %></button>
+	<% else %>
+		<%= button_to "Undo", polymorphic_path([@taskable, task], 
+									 :action => 'active'), :method => :put, remote: true %></button>
+		Completed: <%= task.updated_at %>
+	<% end %>
+</li>

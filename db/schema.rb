@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131025201010) do
+ActiveRecord::Schema.define(version: 20131031150235) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -43,6 +43,19 @@ ActiveRecord::Schema.define(version: 20131025201010) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "tasks", force: true do |t|
+    t.string   "name"
+    t.datetime "due_date"
+    t.boolean  "completed",     default: false
+    t.integer  "user_id"
+    t.integer  "taskable_id"
+    t.string   "taskable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tasks", ["taskable_id", "taskable_type"], name: "index_tasks_on_taskable_id_and_taskable_type"
 
   create_table "users", force: true do |t|
     t.string   "name"

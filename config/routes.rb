@@ -1,12 +1,23 @@
 TwogsApp::Application.routes.draw do
-  resources :users 
-  resources :machines
+  resources :users
+  
+  resources :machines do
+    resources :tasks do
+      put :complete, :on => :member
+      put :active, :on => :member
+    end
+  end
+  
   resources :machine_metas
   resources :sessions, only: [:new, :create, :destroy]
   
   root 'static_pages#home'
   match '/signin',  to: 'sessions#new',     via: 'get'
   match '/signout', to: 'sessions#destroy',  via: 'delete'
+  
+  match '/tasks/complete/:id' => 'tasks#complete', as: 'complete_task', via: :put
+  match '/tasks/complete/:id' => 'tasks#active', as: 'active_task', via: :delete
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

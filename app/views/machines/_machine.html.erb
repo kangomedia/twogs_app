@@ -10,7 +10,7 @@
 	<td><%= machine.year %></td>
 	<td><%= machine.serial %></td>
 	<td><%= machine.status == true ? "Active" : "Inactive" %>
-	<td><%= link_to "View", "#" %></td> 
+	<td><%= link_to "View", machine_path(machine) %></td> 
 	<td><%= link_to "Edit", edit_machine_path(machine) %></td>
 	<td><%= link_to "Delete", machine, method: :delete,
 									  data: { confirm: "You sure?" } %></td>

@@ -12,7 +12,11 @@ class MachinesController < ApplicationController
   end
 
   def show
-    @machine = Machine.find(params[:id])
+    @machine  = Machine.find(params[:id])
+    @metas    = @machine.machine_metas
+    @taskable = @machine
+    @tasks    = @taskable.tasks
+    @task     = Task.new
   end
 
   def create
