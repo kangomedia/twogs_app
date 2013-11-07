@@ -44,7 +44,7 @@
 		<div class="header-inner">
 		
 			<!-- BEGIN LOGO -->
-			<%= link_to image_tag("2gs-logo.png"), root_path, class: "navbar-brand" %>
+			<%= link_to "2GS", root_path, class: "navbar-brand" %>
 			<!-- END LOGO -->
 			
 			<!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -95,7 +95,7 @@
 				<!-- BEGIN USER LOGIN DROPDOWN -->
 				<li class="dropdown user">
 					<%= link_to "#", class: "dropdown-toggle", data: { toggle: "dropdown", hover: "dropdown" } do %>
-						<%= image_tag(current_user.attachment.file.url(:small), width: 26, height: 26) %>
+						
 						<i class="icon-angle-down"></i>
 					<% end %>
 					
