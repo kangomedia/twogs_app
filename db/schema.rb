@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131106132015) do
+ActiveRecord::Schema.define(version: 20131107213549) do
 
   create_table "assignments", force: true do |t|
     t.integer  "workday_id"
     t.integer  "employee_id"
-    t.integer  "timesheet_id", limit: 255
+    t.integer  "timesheet_id"
     t.integer  "job_id"
     t.datetime "date"
     t.string   "hours"
