@@ -18,9 +18,8 @@
 	<div class="col-md-12">
 	
 		<%= form_for(@user, :html => { :multipart => true, :class => "horizontal-form" }) do |f| %>
-			<% if !@user.attachment %>
+		
 				<% @user.build_attachment %>
-			<% end %>
 			
 			<div class="form-body">
 			
@@ -50,7 +49,7 @@
 						</div>
 						
 						<div class="form-group">
-							<% if !(@user.attachment.id).nil? %>
+							<% if @user.attachment %>
 								<%= image_tag(@user.attachment.file.url) %>
 							<% end %>
 						</div>
