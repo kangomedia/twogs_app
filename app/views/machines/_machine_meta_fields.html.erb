@@ -1,9 +1,9 @@
 
-	<%= f.label "Part Name" %>
-	<%= f.text_field :meta_key %>
+	<%= f.label "Part Name", class: "control-label" %>
+	<%= f.text_field :meta_key, class:"form-control" %>
 
-	<%= f.label "Details" %>
-	<%= f.text_field :meta_value %>
+	<%= f.label "Details", class: "control-label" %>
+	<%= f.text_field :meta_value, class:"form-control" %>
 	
 	<% if f.object.attachment %>
 		<% if !f.object.attachment.file_file_name.nil? %>
@@ -12,6 +12,6 @@
 	<% end %>
 	
 	<%= f.fields_for :attachment do |attachment| %>
-			<%= attachment.label "Image" %>
-			<%= attachment.file_field :file %>
+			<%= attachment.label "Image", class: "control-label" %>
+			<%= attachment.file_field :file, class:"form-control" %>
 	<% end %>

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131031150235) do
+ActiveRecord::Schema.define(version: 20131106132015) do
+
+  create_table "assignments", force: true do |t|
+    t.integer  "workday_id"
+    t.integer  "employee_id"
+    t.integer  "timesheet_id", limit: 255
+    t.integer  "job_id"
+    t.datetime "date"
+    t.string   "hours"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -25,6 +36,21 @@ ActiveRecord::Schema.define(version: 20131031150235) do
   end
 
   add_index "attachments", ["attachable_id", "attachable_type"], name: "index_attachments_on_attachable_id_and_attachable_type"
+
+  create_table "employees", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "wage"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "jobs", force: true do |t|
+    t.string   "number"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "machine_meta", force: true do |t|
     t.string   "meta_key"
@@ -57,6 +83,14 @@ ActiveRecord::Schema.define(version: 20131031150235) do
 
   add_index "tasks", ["taskable_id", "taskable_type"], name: "index_tasks_on_taskable_id_and_taskable_type"
 
+  create_table "timesheets", force: true do |t|
+    t.integer  "employee_id"
+    t.datetime "startdate"
+    t.datetime "enddate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "username"
@@ -68,5 +102,13 @@ ActiveRecord::Schema.define(version: 20131031150235) do
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+
+  create_table "workdays", force: true do |t|
+    t.integer  "employee_id"
+    t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "timesheet_id"
+  end
 
 end

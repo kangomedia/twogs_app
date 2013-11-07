@@ -1,44 +1,74 @@
-<h1>Update Equipment</h1>
-
+<!-- BEGIN PAGE HEADER -->
 <div class="row">
-	<div class="span6 offset3">
+	
+	<div class="col-md-12">
+	
+		<!-- BEGIN PAGE TITLE & BREADCRUMB -->
+			<h3 class="page-title">Update Equipment</h3>
+		<!-- END PAGE TITLE & BREADCRUMB -->
+	
+	</div>
+	
+</div>
+<!-- END PAGE HEADER -->
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="row profile">
+
+	<div class="col-md-6">
+	
 		<%= form_for(@machine, :html => { :multipart => true }) do |f| %>
 
-			
+			<div class="form-body">
 			<%= render 'shared/error_messages', object: f.object %>
+			<div class="form-group">
+				<%= f.label :make, class: "control-label" %>
+				<%= f.text_field :make, class:"form-control" %>
+			</div>
 
-			<%= f.label :make %>
-			<%= f.text_field :make %>
+			<div class="form-group">
+				<%= f.label :model, class: "control-label" %>
+				<%= f.text_field :model, class:"form-control" %>
+			</div>
 
-			<%= f.label :model %>
-			<%= f.text_field :model %>
-
-			<%= f.label :year %>
-			<%= f.select :year, ((Time.zone.now.year - 40)..(Time.zone.now.year + 1)).to_a.reverse %>
+			<div class="form-group">
+				<%= f.label :year, class: "control-label" %>
+				<%= f.select :year, ((Time.zone.now.year - 40)..(Time.zone.now.year + 1)).to_a.reverse %>
+			</div>
 			
-			<%= f.label :serial %>
-			<%= f.text_field :serial %>
+			<div class="form-group">
+				<%= f.label :serial, class: "control-label" %>
+				<%= f.text_field :serial, class:"form-control" %>
+			</div>
 			
-			<%= f.label :status %>
-			<%= f.select :status, options_for_select({ "Active" => "true", "Inactive" => "false" }, @machine.status.to_s ) %>
+			<div class="form-group">
+				<%= f.label :status, class: "control-label" %>
+				<%= f.select :status, options_for_select({ "Active" => "true", "Inactive" => "false" }, @machine.status.to_s ) %>
+			</div>
 			
-			<%= f.fields_for :attachments do |attachment| %>
-				<%= render "shared/attachment_fields", :f => attachment %>
-			<% end %>
+			<div class="form-group">
+				<%= f.fields_for :attachments do |attachment| %>
+					<%= render "shared/attachment_fields", :f => attachment %>
+				<% end %>
+			</div>
 			
-			<%= f.fields_for :machine_metas do |meta| %>
-				<fieldset>
-					<%= render "machine_meta_fields", :f => meta %>
-					<%= meta.hidden_field :_destroy %>
-					<%= link_to "remove", '#', class: "remove_fields" %>
-				</fieldset>
+			<div class="form-group">
+				<%= f.fields_for :machine_metas do |meta| %>
+					<fieldset>
+						<%= render "machine_meta_fields", :f => meta %>
+						<%= meta.hidden_field :_destroy %>
+						<%= link_to "remove", '#', class: "remove_fields" %>
+					</fieldset>
 				
-			<% end %>
+				<% end %>
 			
 			<%= link_to_add_fields "Add Part", f, :machine_metas, :attachment %>
-			
+			</div>
 
 			<%= f.submit "Update Equipment", class: "btn btn-large btn-primary" %>
 		<% end %>
+			</div>
 	</div>
+	
 </div>
+<!-- END PAGE CONTENT -->

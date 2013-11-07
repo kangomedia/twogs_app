@@ -77,4 +77,13 @@ TwogsApp::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['2gsapp'],
+      :access_key_id => ENV['AKIAJYBWNPT3XLVRPGJA'],
+      :secret_access_key => ENV['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']
+    }
+  }
 end

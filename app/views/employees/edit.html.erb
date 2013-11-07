@@ -1,0 +1,6 @@
+<h1><%= @employee.full_name %></h1>
+
+<%= form_for @employee do |f| %>
+	<%= render "employee_form_fields", :f => f %>	
+	<%= f.submit "Update Employee", class: "btn btn-large btn-primary" %>
+<% end %>

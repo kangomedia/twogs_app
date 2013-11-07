@@ -1,0 +1,48 @@
+<!-- BEGIN PAGE HEADER -->
+<div class="row">
+	
+	<div class="col-md-12">
+	
+		<!-- BEGIN PAGE TITLE & BREADCRUMB -->
+			<h3 class="page-title">Employees</h3>
+		<!-- END PAGE TITLE & BREADCRUMB -->
+	
+	</div>
+	
+</div>
+<!-- END PAGE HEADER -->
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="row profile">
+
+	<div class="col-md-12">
+	
+		<p><%= link_to "Add New Employee", new_employee_path, class: "btn btn-large btn-danger" %></p>
+	
+		<div class="table-responsive">
+		<table class="table table-bordered table-striped">
+			<tr>
+				<th>Employee Name</th>
+				<th>Wage</th>
+				<th>View</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+
+				<% @employees.each do |employee| %>
+					<tr>
+						<td><%= employee.full_name %></td>
+						<td>$<%= employee.wage %></td>
+						<td><%= link_to "View", employee_path(employee) %></td>
+						<td><%= link_to "Edit", edit_employee_path(employee) %></td>
+						<td><%= link_to "Delete", employee, method: :delete,
+														  data: { confirm: "You sure?" } %></td>
+					</tr>
+				<% end %>
+
+		</table>
+		</div>
+	</div>
+	
+</div>
+<!-- END PAGE CONTENT -->

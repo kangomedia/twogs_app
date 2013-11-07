@@ -1,0 +1,110 @@
+<!-- BEGIN PAGE HEADER -->
+<div class="row">
+	
+	<div class="col-md-12">
+	
+		<!-- BEGIN PAGE TITLE & BREADCRUMB -->
+			<h3 class="page-title"><%= @employee.full_name %></h3>
+		<!-- END PAGE TITLE & BREADCRUMB -->
+	
+	</div>
+	
+</div>
+<!-- END PAGE HEADER -->
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="row profile">
+
+	<div class="col-md-12">
+	
+		<%= form_for @timesheet do |f| %>
+			<div class="form-body">
+			
+				<div class="form-group">
+					<%= f.label "Start Date", class: "control-label" %>
+					<%= f.text_field :startdate, class:"form-control" %>
+				</div>
+
+				<div class="form-group">
+					<%= f.label "End Date", class: "control-label" %>
+					<%= f.text_field :enddate, class:"form-control" %>
+				</div>
+
+				<%= f.hidden_field :employee_id, :value => @employee.id %>
+
+				<% @timesheet.date_range(@timesheet.startdate, @timesheet.enddate).each do |week_date| %> 
+					<%= f.fields_for :workdays do |workday_form| %>
+						<%= workday_form.hidden_field :employee_id, :value => @employee.id %>
+						<%= workday_form.hidden_field :date, :value => week_date.to_date %>
+						<%= workday_form.hidden_field :timesheet_id, :value => @timesheet.id %>
+					<% end %>
+				<% end %>
+			</div>
+			<%= f.submit "New TimeSheet", class: "btn btn-primary" %>
+			
+		<% end %>
+	
+		<% @employee.timesheets.each do |timesheet| %>
+			<h3>Week of <%= timesheet.startdate.strftime("%B %e, %Y") %></h3>
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+						<% timesheet.date_range(timesheet.startdate, timesheet.enddate).each do |week_date| %>
+								<th><%= week_date.to_date.strftime("%a %d") %><br /></th>
+						<% end %>
+								<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<% timesheet.workdays.each do |workday| %>
+								<td>
+
+									<%= form_for @assignment do |assignment_form| %>
+										<div class="form-body">
+									
+												<%= assignment_form.hidden_field :workday_id, :value => workday.id %>
+												<%= assignment_form.hidden_field :employee_id, :value => @employee.id %>
+												<%= assignment_form.hidden_field :timesheet_id, :value => timesheet.id %>
+												<%= assignment_form.hidden_field :date, :value => workday.date %>
+												<div class="form-group">
+													<%= assignment_form.text_field :hours, class: "form-control" %>
+												</div>
+												<div class="form-group">
+													<%= assignment_form.collection_select :job_id, Job.all, :id, :number, :prompt => true, class: "form-control" %>
+												</div>
+												<%= assignment_form.submit "Add", class: "btn green btn-xs" %>
+											</div>
+										</div>
+									<% end %>
+
+									<% workday.assignments.each do |assignment| %>
+										<%= form_for Assignment.find(assignment.id) do |assign| %>
+										<div class="form-body">
+											<div class="form-group">
+												<%= assign.text_field :hours, class: "form-control" %>
+												<%= assign.collection_select :job_id, Job.all, :id, :number, :prompt => true, class: "form-control" %>
+											</div>
+											<div class="form-group">
+												<%= assign.submit "Update", class: "btn green btn-xs" %>
+												<%= link_to "Delete", Assignment.find(assignment.id), method: :delete,
+																			  data: { confirm: "You sure?" } %>
+											</div>
+										</div>
+										<% end %>
+									<% end %>
+								</td>
+							<% end %>
+							<td><%= link_to "Delete", timesheet, method: :delete,
+															  data: { confirm: "You sure?" } %></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		<% end %>
+		
+	</div>
+	
+</div>
+<!-- END PAGE CONTENT -->

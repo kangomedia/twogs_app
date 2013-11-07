@@ -9,7 +9,10 @@ class TasksController < ApplicationController
   def create
     @task = @taskable.tasks.new(task_params)
     if @task.save
-      redirect_to @taskable, notice: "Task Saved."
+      respond_to do |format|
+        format.html{ redirect_to @taskable }
+        format.js
+      end
     else
       render :new
     end
@@ -33,6 +36,12 @@ class TasksController < ApplicationController
     else
       render :new
     end
+  end
+  
+  def destroy
+    Task.find(params[:id]).destroy
+    flash[:success] = "Task deleted."
+    redirect_to :back
   end
   
 private

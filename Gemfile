@@ -6,9 +6,10 @@ ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 gem 'will_paginate', '3.0.4'
-gem 'bootstrap-will_paginate', '0.0.9'
+# gem 'bootstrap-will_paginate', '0.0.9'
 gem 'bootstrap-sass', '2.3.2.0'
-
+# gem "best_in_place", :git => "git://github.com/aaronchi/best_in_place"
+gem 'aws-sdk', '~> 1.5.7'
 
 # Use sqlite3 as the database for Active Record
 group :development, :test do
@@ -34,6 +35,8 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '3.0.4'
+
+gem 'jquery-ui-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks', '1.1.1'

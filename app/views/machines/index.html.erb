@@ -1,19 +1,46 @@
 <% provide(:title, 'All Machines') %>
-<h1>All Equipment</h1>
 
-<table class="table table-bordered table-striped">
-	<tr>
-		<th>Image</th>
-		<th>Make</th>
-		<th>Model</th>
-		<th>Year</th>
-		<th>Serial</th>
-		<th>Status</th>
-		<th>View Details</th>
-		<th>Edit</th>
-		<th>Delete</th>
-	</tr>
-
-	<%= render @machines %>
+<!-- BEGIN PAGE HEADER -->
+<div class="row">
 	
-</table>
+	<div class="col-md-12">
+	
+		<!-- BEGIN PAGE TITLE & BREADCRUMB -->
+			<h3 class="page-title">All Equipment</h3>
+		<!-- END PAGE TITLE & BREADCRUMB -->
+	
+	</div>
+	
+</div>
+<!-- END PAGE HEADER -->
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="row profile">
+
+	<div class="col-md-12">
+	
+		<p><%= link_to "Add New Equipment", new_machine_path, class: "btn btn-large btn-danger" %></p>
+	
+		<div class="table-responsive">
+		<table class="table table-bordered table-striped">
+			<tr>
+				<th>Image</th>
+				<th>Make</th>
+				<th>Model</th>
+				<th>Year</th>
+				<th>Serial</th>
+				<th>Status</th>
+				<th>View Details</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+
+			<%= render @machines %>
+
+		</table>
+		</div>
+		
+	</div>
+	
+</div>
+<!-- END PAGE CONTENT -->

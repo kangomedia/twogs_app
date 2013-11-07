@@ -1,13 +1,42 @@
 <% provide(:title, 'All users') %>
-<h1>All users</h1>
 
-<table class="table table-bordered table-striped">
-	<tr>
-		<th>Image</th>
-		<th>Employee</th>
-		<th>Actions</th>
-	</tr>
-
-	<%= render @users %>
+<!-- BEGIN PAGE HEADER -->
+<div class="row">
 	
-</table>
+	<div class="col-md-12">
+	
+		<!-- BEGIN PAGE TITLE & BREADCRUMB -->
+			<h3 class="page-title">All users</h3>
+		<!-- END PAGE TITLE & BREADCRUMB -->
+	
+	</div>
+	
+</div>
+<!-- END PAGE HEADER -->
+
+<!-- BEGIN PAGE CONTENT -->
+<div class="row profile">
+
+	<div class="col-md-12">
+	
+		<p><%= link_to "Add New User", new_user_path, class: "btn btn-large btn-danger" %></p>
+		
+		<div class="table-responsive">
+		<table class="table table-bordered table-striped">
+			<tr>
+				<th>Image</th>
+				<th>Employee</th>
+				<th>View</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+
+			<%= render @users %>
+
+		</table>
+		</div>
+		
+	</div>
+	
+</div>
+<!-- END PAGE CONTENT -->

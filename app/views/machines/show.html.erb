@@ -1,61 +1,100 @@
-<h1>Equipment Profile</h1>
+<!-- BEGIN PAGE HEADER -->
+<div class="row">
+	
+	<div class="col-md-12">
+	
+		<!-- BEGIN PAGE TITLE & BREADCRUMB -->
+			<h3 class="page-title">Equipment Profile</h3>
+		<!-- END PAGE TITLE & BREADCRUMB -->
+	
+	</div>
+	
+</div>
+<!-- END PAGE HEADER -->
 
-<table class="table table-bordered table-striped">
-	<tr>
-		<td><strong>Make</strong></td>
-		<td><%= @machine.make %>
-		<td></td>
-	</tr>
+<!-- BEGIN PAGE CONTENT -->
+<div class="row profile">
+
+	<div class="col-md-12">
 	
-	<tr>
-		<td><strong>Model</strong></td>
-		<td><%= @machine.model %>
-		<td></td>
-	</tr>
+		<ul class="nav nav-pills">
+			<li class="active"><a href="#tab_2_1" data-toggle="tab">Specs</a></li>
+			<li class=""><a href="#tab_2_2" data-toggle="tab">Tasks</a></li>
+		</ul>
 	
-	<tr>
-		<td><strong>Year</strong></td>
-		<td><%= @machine.year %>
-		<td></td>
-	</tr>
-	
-	<tr>
-		<td><strong>Serial</strong></td>
-		<td><%= @machine.serial %>
-		<td></td>
-	</tr>
-	
-	<tr>
-		<td><strong>Status</strong></td>
-		<td><%= @machine.status %>
-		<td></td>
-	</tr>
-	
-	<% @metas.each do |meta| %>
-		<tr>
-			<td><strong><%= meta.meta_key %></strong></td>
-			<td><%= meta.meta_value %></td>
-			<td>
-				<% if !meta.attachment.file_file_name.nil? %>
-					<%= image_tag meta.attachment.file.url(:small) %>
+		<div class="tab-content">
+		
+			<div class="tab-pane fade active in" id="tab_2_1">
+			
+				<div class="table-responsive">
+				<table class="table table-bordered table-striped">
+					<tr>
+						<td><strong>Make</strong></td>
+						<td><%= @machine.make %>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td><strong>Model</strong></td>
+						<td><%= @machine.model %>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td><strong>Year</strong></td>
+						<td><%= @machine.year %>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td><strong>Serial</strong></td>
+						<td><%= @machine.serial %>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td><strong>Status</strong></td>
+						<td><%= @machine.status %>
+						<td></td>
+					</tr>
+
+					<% @metas.each do |meta| %>
+						<tr>
+							<td><strong><%= meta.meta_key %></strong></td>
+							<td><%= meta.meta_value %></td>
+							<td>
+								<% if !meta.attachment.file_file_name.nil? %>
+									<%= image_tag meta.attachment.file.url(:small) %>
+								<% end %>
+							</td>
+						</tr>
+					<% end %>
+
+				</table>
+				</div>
+				
+			</div>
+			
+			<div class="tab-pane fade" id="tab_2_2">
+				<h3>Tasks</h3>
+				
+				<%= form_for [@taskable, @task], remote: true do |f| %>
+					<p><%= f.text_field :name %> - <%= f.text_field :due_date, :class => "date-select" %> - <%= f.hidden_field :user_id, :value => 1 %> <%= f.submit %></p>
 				<% end %>
-			</td>
-		</tr>
-	<% end %>
+				
+				<ul id="active-task-list">
+					<%= render @tasks.active %>
+				</ul>
+				<hr />
+
+				<ul id="task-list">
+					<%= render @tasks.completed %>
+				</ul>
+			</div>
+			
+		</div>
+		
+	</div>
 	
-</table>
-
-<hr>
-
-<h2>Tasks</h2>
-<ul id="task-list">
-	<%= render @tasks.active %>
-</ul>
-
-<%= form_for [@taskable, @task] do |f| %>
-	<p><%= f.text_field :name %> - <%= f.date_select :due_date %> - <%= f.hidden_field :user_id, :value => 1 %> <%= f.submit %></p>
-<% end %>
-
-<ul id="task-list">
-	<%= render @tasks.completed %>
-</ul>
+</div>
+<!-- END PAGE CONTENT -->
