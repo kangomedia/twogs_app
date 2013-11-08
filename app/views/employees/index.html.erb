@@ -24,7 +24,7 @@
 			<tr>
 				<th>Employee Name</th>
 				<th>Wage</th>
-				<th>View</th>
+				<th>Timesheet</th>
 				<th>Edit</th>
 				<th>Delete</th>
 			</tr>
@@ -33,7 +33,7 @@
 					<tr>
 						<td><%= employee.full_name %></td>
 						<td>$<%= employee.wage %></td>
-						<td><%= link_to "View", employee_path(employee) %></td>
+						<td><%= link_to "Timesheet", employee_path(employee) %></td>
 						<td><%= link_to "Edit", edit_employee_path(employee) %></td>
 						<td><%= link_to "Delete", employee, method: :delete,
 														  data: { confirm: "You sure?" } %></td>
