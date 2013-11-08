@@ -1,0 +1,5 @@
+<% if @task.completed? %>
+  $('#edit_task_<%= @task.id %>').appendTo('#complete-task-list');
+<% else %>
+  $('#edit_task_<%= @task.id %>').appendTo('#active-task-list');
+<% end %>

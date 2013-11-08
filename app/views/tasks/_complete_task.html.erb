@@ -1,0 +1,14 @@
+<%= form_for [@taskable, task] do |f| %>
+	<%= f.check_box :completed %>
+	<%= f.submit "Update" %>
+	<strong><%= f.label :complete, task.name %></strong>
+	<% if task.due_date %>
+		(<%= task.due_date.strftime("%B %e, %Y") %>)
+	<% end %>
+	<%= link_to "(remove)", [@taskable, task], method: :delete, data: { confirm: "Are you sure?" }, remote: true %>
+<% end %>
+
+<% if !task.completed %>
+	<%= link_to "(delete)", [@taskable, task], method: :delete, data: { confirm: "You sure?" }, remote: true %>
+<% end %>
+Completed: <%= task.updated_at.strftime("%B %e, %Y") %>
