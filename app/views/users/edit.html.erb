@@ -18,8 +18,9 @@
 	<div class="col-md-12">
 	
 		<%= form_for(@user, :html => { :multipart => true, :class => "horizontal-form" }) do |f| %>
-		
+			<% if !@user.attachment %>
 				<% @user.build_attachment %>
+			<% end %>
 			
 			<div class="form-body">
 			
