@@ -77,6 +77,8 @@ GEM
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
     ffi (1.9.3)
+    font-awesome-rails (4.0.3.0)
+      railties (>= 3.2, < 5.0)
     formatador (0.2.4)
     guard (2.2.3)
       formatador (>= 0.2.4)
@@ -101,6 +103,9 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-turbolinks (2.0.1)
+      railties (>= 3.1.0)
+      turbolinks
     jquery-ui-rails (4.1.0)
       railties (>= 3.1.0)
     json (1.8.1)
@@ -228,10 +233,12 @@ DEPENDENCIES
   childprocess (= 0.3.6)
   coffee-rails (~> 4.0.0)
   factory_girl_rails (= 4.2.1)
+  font-awesome-rails
   guard-rspec (= 2.5.0)
   guard-spork (= 1.5.0)
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)
+  jquery-turbolinks
   jquery-ui-rails
   paperclip!
   pg (= 0.15.1)

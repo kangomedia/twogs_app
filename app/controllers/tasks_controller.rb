@@ -3,18 +3,14 @@ class TasksController < ApplicationController
   
   
   def new
-    @tasks = @taskable.tasks.new
+    @task = Task.new
   end
   
   def create
-    @task = @taskable.tasks.new(task_params)
-    if @task.save
-      respond_to do |format|
-        format.html{ redirect_to @taskable }
-        format.js
-      end
-    else
-      render :new
+    @task = @taskable.tasks.create!(task_params)
+    respond_to do |format|
+      format.html { redirect_to @taskable }
+      format.js
     end
   end
   
@@ -38,10 +34,21 @@ class TasksController < ApplicationController
     end
   end
   
+  def update 
+    @task = Task.find(params[:id])
+    @task.update_attributes!(task_params)
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
+  end
+  
   def destroy
-    Task.find(params[:id]).destroy
-    flash[:success] = "Task deleted."
-    redirect_to :back
+    @task = Task.find(params[:id]).destroy
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
   end
   
 private

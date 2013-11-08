@@ -73,23 +73,42 @@
 				</table>
 				</div>
 				
+				<%= link_to "Edit", edit_machine_path, class: "btn btn-danger" %>
+				
 			</div>
 			
 			<div class="tab-pane fade" id="tab_2_2">
 				<h3>Tasks</h3>
 				
-				<%= form_for [@taskable, @task], remote: true do |f| %>
-					<p><%= f.text_field :name %> - <%= f.text_field :due_date, :class => "date-select" %> - <%= f.hidden_field :user_id, :value => 1 %> <%= f.submit %></p>
-				<% end %>
+				<%= link_to "New Task", new_machine_task_path(@machine), id: "new_link", class: "btn btn-success", remote: true %>
 				
-				<ul id="active-task-list">
-					<%= render @tasks.active %>
-				</ul>
+				<div class="row">
+				
+					<div class="col-md-7">
+					
+						<div class="tasks" id="active-task-list">
+							<h4>Incomplete Tasks</h4>
+							<%= render @incomplete_tasks  %>
+						</div>
+						
+					</div>
+					
+				</div>
+				
 				<hr />
-
-				<ul id="task-list">
-					<%= render @tasks.completed %>
-				</ul>
+				
+				<div class="row">
+				
+					<div class="col-md-7">
+				
+						<div class="tasks" id="complete-task-list">
+							<h4>Completed Tasks</h4>
+							<%= render @complete_tasks  %>
+						</div>
+						
+					</div>
+				
+				</div>
 			</div>
 			
 		</div>

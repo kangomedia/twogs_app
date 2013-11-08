@@ -1,15 +1,13 @@
-<li>
-	<%= task.name %> 
+<%= form_for [@taskable, task], remote: true do |f| %>
+	<%= f.check_box :completed %>
+	<%= f.submit "Update" %>
+	<%= f.label :complete, task.name %>
 	<% if task.due_date %>
 		(<%= task.due_date.strftime("%B %e, %Y") %>)
 	<% end %>
-	<% if task.completed == false %>
-		<%= link_to "delete", [@taskable, task], method: :delete, data: { confirm: "You sure?" } %>
-	<% end %>
-	<% if task.completed == false %>
-		<%= button_to "Done", polymorphic_path([@taskable, task], 
-									 :action => 'complete'), :method => :put %></button>
-	<% else %>
+	<% if task.completed %>
 		Completed: <%= task.updated_at.strftime("%B %e, %Y") %>
 	<% end %>
-</li>
+	<%= link_to "(remove)", [@taskable, task], method: :delete, data: { confirm: "Are you sure?" }, remote: true %>
+<% end %>
+

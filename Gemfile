@@ -11,6 +11,9 @@ gem 'bootstrap-sass', '2.3.2.0'
 # gem "best_in_place", :git => "git://github.com/aaronchi/best_in_place"
 gem 'aws-sdk', '~> 1.5.7'
 
+gem "font-awesome-rails"
+gem 'jquery-turbolinks'
+
 # Use sqlite3 as the database for Active Record
 group :development, :test do
   gem 'sqlite3', '1.3.8'

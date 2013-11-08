@@ -13,6 +13,7 @@
  *= require style
  *= require default
  *= require bootstrap.min
+ *= require font-awesome
  *= require font-awesome.min
  *= require_tree .
  */

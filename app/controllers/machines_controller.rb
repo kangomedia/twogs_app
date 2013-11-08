@@ -17,6 +17,8 @@ class MachinesController < ApplicationController
     @taskable = @machine
     @tasks    = @taskable.tasks
     @task     = Task.new
+    @incomplete_tasks = Task.where(completed: false)
+    @complete_tasks = Task.where(completed: true)
   end
 
   def create
@@ -46,7 +48,7 @@ class MachinesController < ApplicationController
     @machine = Machine.find(params[:id])
     if @machine.update_attributes(machine_params)
       flash[:success] = "Equipment updated"
-      redirect_to edit_machine_path(@machine)
+      redirect_to machine_path(@machine)
     else
       render 'edit'
     end    
