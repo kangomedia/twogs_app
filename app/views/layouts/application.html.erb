@@ -40,7 +40,9 @@
 		<div class="header-inner">
 		
 			<!-- BEGIN LOGO -->
-			<%= link_to "2GS", root_path, class: "navbar-brand" %>
+			<%= link_to root_path, class: "navbar-brand" do %>
+				<%= image_tag("2gs-logo.png", height:"24", width:"auto")  %>
+			<% end %>
 			<!-- END LOGO -->
 			
 			<!-- BEGIN RESPONSIVE MENU TOGGLER -->
