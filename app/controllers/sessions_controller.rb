@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  layout "sessions_layout"
   
   def new
     render 'new'
