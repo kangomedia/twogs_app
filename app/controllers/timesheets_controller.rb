@@ -42,6 +42,8 @@ class TimesheetsController < ApplicationController
     @timesheet = Timesheet.find(:first, :conditions => ['timesheets.startdate = ?', @bow])
     if @timesheet
       redirect_to timesheet_path(@timesheet)
+    else
+      redirect_to timesheets_path
     end
   end
   
