@@ -13,12 +13,14 @@ class MachinesController < ApplicationController
 
   def show
     @machine  = Machine.find(params[:id])
+    @new_machine_meta = MachineMeta.new
     @metas    = @machine.machine_metas
     @taskable = @machine
-    @tasks    = @taskable.tasks
+    @tasks    = @taskable.tasks.order(:due_date => :asc)
     @task     = Task.new
-    @incomplete_tasks = Task.where(completed: false)
-    @complete_tasks = Task.where(completed: true)
+    @completed_tasks = @tasks.where(completed: true)
+    @machine.machine_metas.build.build_attachment
+    
   end
 
   def create
@@ -52,6 +54,18 @@ class MachinesController < ApplicationController
     else
       render 'edit'
     end    
+  end
+  
+  def delete
+    Machine.where(id: params[:machine_ids]).delete_all
+    flash[:success] = "Equipment was successfully deleted."
+    redirect_to machines_path
+  end
+  
+  def clear_task_history
+    Task.where(id: params[:task_ids]).delete_all
+    flash[:success] = "Service history cleared successfully!"
+    redirect_to :back
   end
   
 private

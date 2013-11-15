@@ -53,7 +53,7 @@ class TasksController < ApplicationController
   
 private
   def task_params
-    params.require(:task).permit(:name, :due_date, :completed, :user_id)
+    params.require(:task).permit(:name, :due_date, :completed, :user_id, :completed_by)
   end
   
   def load_taskable

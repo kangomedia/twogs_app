@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   belongs_to :taskable, polymorphic: true
+  validates :name,    presence: true
   
   scope :completed, -> { where(completed: true) }
   scope :active, -> { where(completed: false) }

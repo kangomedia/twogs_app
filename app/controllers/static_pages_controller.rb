@@ -6,6 +6,6 @@ class StaticPagesController < ApplicationController
   
   def time
     @employees = Employee.all
-    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    @timesheet = Timesheet.new
   end
 end

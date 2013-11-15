@@ -17,11 +17,12 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 
-  <script>
-	  jQuery(document).ready(function() {    
-	     App.init(); 
-	     Index.init();
-	  });
+	<script>
+		jQuery(document).ready(function() {    
+			App.init(); 
+			Index.init();
+			TableManaged.init();
+		});
 	</script>
 
 
@@ -31,7 +32,7 @@
    <![endif]-->
 </head>
 
-<body class="page-header-fixed" "data-no-turbolink">
+<body class="page-header-fixed">
 
 	<!-- BEGIN HEADER -->   
 	<div class="header navbar navbar-inverse navbar-fixed-top">
@@ -155,39 +156,43 @@
 				</li>
 			
 				<li>
-					<%= link_to "javascript:;" do %>
-						<i class="icon-cogs"></i> 
+					<%= link_to machines_path do %>
+						<i class="icon-cogs"></i>
 						<span class="title">Equipment</span>
 						<span class="arrow "></span>
 					<% end %>
-					<ul class="sub-menu">
-						<li><%= link_to "All Equipment", machines_path %></li>
-						<li><%= link_to "New Equipment", new_machine_path %></li>
-					</ul>
 				</li>
 				
 				<li>
-					<%= link_to "javascript:;" do %>
-						<i class="icon-user"></i>
-						<span class="title">Users</span>
+					<%= link_to current_timesheets_path do %>
+						<i class="icon-time"></i>
+						<span class="title">Timesheets</span>
 						<span class="arrow "></span>
 					<% end %>
-					<ul class="sub-menu">
-						<li><%= link_to "All Users", users_path %></li>
-						<li><%= link_to "New User", new_user_path %></li>
-					</ul>
 				</li>
 				
 				<li>
-					<%= link_to "javascript:;" do %>
+					<%= link_to employees_path do %>
 						<i class="icon-sitemap"></i>
 						<span class="title">Employees</span>
 						<span class="arrow "></span>
 					<% end %>
-					<ul class="sub-menu">
-						<li><%= link_to "All Employees", employees_path %></li>
-						<li><%= link_to "New Employee", new_employee_path %></li>
-					</ul>
+				</li>
+				
+				<li>
+					<%= link_to jobs_path do %>
+						<i class="icon-road"></i>
+						<span class="title">Jobs</span>
+						<span class="arrow "></span>
+					<% end %>
+				</li>
+				
+				<li>
+					<%= link_to users_path do %>
+						<i class="icon-user"></i>
+						<span class="title">Users</span>
+						<span class="arrow "></span>
+					<% end %>
 				</li>
 			
 			</ul>

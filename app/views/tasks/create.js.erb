@@ -1,4 +1,2 @@
-$('#new_task').remove();
-$('#new_link').show();
 $('#active-task-list').append('<%= j render(@task) %>');
 $('#edit_task_<%= @task.id %>').submitOnCheck();

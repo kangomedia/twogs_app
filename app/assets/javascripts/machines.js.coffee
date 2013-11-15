@@ -13,3 +13,7 @@ jQuery ->
 
 jQuery ->
   $('.date-select').datepicker({ dateFormat: 'dd-mm-yy' });
+  
+jQuery ->
+	$('.edit-button').click ->
+        $('.delete-checkbox').toggle()

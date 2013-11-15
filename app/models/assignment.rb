@@ -1,7 +1,7 @@
 class Assignment < ActiveRecord::Base
   validates :hours, presence: true
   
-  def assignment_sum
-    Assignment.sum(:hours).group(:job_id)
+  def self.active(timesheet)
+    where("assignments.timesheet_id = ?", timesheet.id)
   end
 end

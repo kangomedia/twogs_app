@@ -1,10 +1,44 @@
 TwogsApp::Application.routes.draw do
-  resources :users, :employees, :assignments, :machine_metas
+  resources :assignments
   resources :timesheets do
     resources :workdays
+    collection do
+      get :current
+      put :delete
+    end
+  end
+  
+  resources :jobs do
+    collection do
+      put :delete
+    end
+  end
+  
+  resources :users do
+    collection do
+      put :delete
+    end
+  end
+  
+  resources :employees do
+    collection do
+      put :delete
+    end
+  end
+  
+  resources :machine_metas do
+    collection do
+      put :delete
+      put :add_image
+    end
   end
   
   resources :machines do
+    collection do
+      put :delete
+      put :clear_task_history
+    end
+    
     resources :tasks do
       put :complete, :on => :member
       put :active, :on => :member

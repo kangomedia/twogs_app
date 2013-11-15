@@ -1,5 +1,6 @@
 class Timesheet < ActiveRecord::Base
   belongs_to :employee
+  has_many :employees, through: :workdays
   has_many :workdays, dependent: :destroy
   
   accepts_nested_attributes_for :workdays, :allow_destroy => true

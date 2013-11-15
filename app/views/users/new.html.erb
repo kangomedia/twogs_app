@@ -20,44 +20,7 @@
 		<%= form_for(@user, :html => { :multipart => true, :class => "horizontal-form" }) do |f| %>
 			<% @user.build_attachment %>
 			
-			<div class="form-body">
-			
-				<div class="row">
-				
-					<div class="col-md-6">
-						<%= render 'shared/error_messages', object: f.object %>
-					
-						<div class="form-group">
-							<%= f.label :name, class: "control-label" %>
-							<%= f.text_field :name, class:"form-control" %>
-						</div>
-						
-						<div class="form-group">
-							<%= f.label :username, class: "control-label" %>
-							<%= f.text_field :username, class:"form-control" %>
-						</div>
-						
-						<div class="form-group">
-							<%= f.label :password, class: "control-label" %>
-							<%= f.password_field :password, class:"form-control" %>
-						</div>
-						
-						<div class="form-group">
-							<%= f.label :password_confirmation, class: "control-label" %>
-							<%= f.password_field :password_confirmation, class:"form-control" %>
-						</div>
-						
-						<div class="form-group">
-							<%= f.fields_for :attachment do |attachment| %>
-								<%= render "shared/attachment_fields", :f => attachment %>
-							<% end %>
-						</div>
-					
-					</div>
-				
-				</di>
-			
-			</div>
+			<%= render "user_form", :f => f %>
 		  	
 		<%= f.submit "Add User", class: "btn btn-large btn-primary" %>
 		<% end %>

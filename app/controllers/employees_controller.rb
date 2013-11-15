@@ -2,6 +2,7 @@ class EmployeesController < ApplicationController
   def index
     @employees = Employee.all
     @date = Date.today.beginning_of_week
+    @employee = Employee.new
   end
   
   def new
@@ -55,6 +56,12 @@ class EmployeesController < ApplicationController
     Employee.find(params[:id]).destroy
     flash[:success] = "Employee deleted."
     redirect_to employees_url
+  end
+  
+  def delete
+    Employee.where(id: params[:employee_ids]).delete_all
+    flash[:success] = "Employee successfully deleted."
+    redirect_to employees_path
   end
   
 private

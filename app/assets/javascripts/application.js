@@ -13,5 +13,13 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery.dataTables
 //= require turbolinks
+//= require bootstrap.min
+//= require twitter-bootstrap-hover-dropdown.min
+//= require jquery.slimscroll.min
+//= require jquery.blockui.min
+//= require jquery.cookie.min.js
+//= require app
+//= require index
 //= require_tree .

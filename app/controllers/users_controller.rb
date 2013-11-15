@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
+    @user = User.new
   end
   
   def edit
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "Added New User Successfully!"
-      redirect_to @user
+      redirect_to users_path
     else
       render 'new'
     end
@@ -43,6 +44,12 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "User deleted."
     redirect_to users_url
+  end
+  
+  def delete
+    User.where(id: params[:user_ids]).delete_all
+    flash[:success] = "User successfully deleted."
+    redirect_to users_path
   end
   
   private
