@@ -36,8 +36,8 @@ class TimesheetsController < ApplicationController
   end
   
   def current
-    @bow = Date.today.beginning_of_week
-    @eow = Date.today.end_of_week
+    @bow = Time.zone.now.beginning_of_week
+    @eow = Time.zone.now.end_of_week
     
     @timesheet = Timesheet.find(:first, :conditions => ['timesheets.startdate = ?', @bow])
     if @timesheet
