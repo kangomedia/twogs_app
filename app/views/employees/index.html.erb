@@ -65,7 +65,7 @@
 						<tr class="odd gradeX">
 						   <td class="delete-checkbox"><%= check_box_tag "employee_ids[]", employee.id, false, class: "checkboxes"  %></td>
 						   <td><%= link_to employee.full_name, edit_employee_path(employee) %></td>
-							<td><%= link_to employee.wage, edit_employee_path(employee) %></td>
+							<td><%= link_to number_to_currency(employee.wage), edit_employee_path(employee) %></td>
 						</tr>
 					<% end %>
 					</tbody>

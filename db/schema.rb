@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131116000627) do
+ActiveRecord::Schema.define(version: 20131122180417) do
 
   create_table "assignments", force: true do |t|
     t.integer  "workday_id"
@@ -36,6 +36,16 @@ ActiveRecord::Schema.define(version: 20131116000627) do
   end
 
   add_index "attachments", ["attachable_id", "attachable_type"], name: "index_attachments_on_attachable_id_and_attachable_type"
+
+  create_table "documents", force: true do |t|
+    t.integer  "machine_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "pdf_file_name"
+    t.string   "pdf_content_type"
+    t.integer  "pdf_file_size"
+    t.datetime "pdf_updated_at"
+  end
 
   create_table "employees", force: true do |t|
     t.string   "first_name"
@@ -66,6 +76,16 @@ ActiveRecord::Schema.define(version: 20131116000627) do
     t.integer  "year"
     t.string   "serial"
     t.boolean  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "value"
+  end
+
+  create_table "notes", force: true do |t|
+    t.string   "subject"
+    t.string   "body"
+    t.integer  "machine_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

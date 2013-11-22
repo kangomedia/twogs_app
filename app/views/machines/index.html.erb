@@ -34,7 +34,7 @@
                  <div class="portlet-body">
                     <div class="table-toolbar">
                        <div class="btn-group">
-                          <%= link_to new_machine_path, class: "btn btn-large btn-primary" do %>
+                          <%= link_to "#new-machine", class: "btn btn-large btn-primary", data: {:toggle => 'modal' } do %>
 									<i class="icon-plus"></i> New
 								<% end %>
 							</div>
@@ -70,7 +70,7 @@
 
 						<div class="table-toolbar">
                        <div class="btn-group">
-                          <%= link_to new_machine_path, class: "btn btn-large btn-primary" do %>
+                          <%= link_to "#new-machine", class: "btn btn-large btn-primary", data: {:toggle => 'modal' } do %>
 									<i class="icon-plus"></i> New
 								<% end %>
 							</div>
@@ -92,5 +92,38 @@
 			
    </div>
 </div>
+
+<!-- BEGIN NEW MACHINE MODAL FORM -->
+<div id="new-machine" class="modal fade" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<%= form_for(@machine, :html => { :multipart => true }) do |f| %>
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+				<h4 class="modal-title">New Equipment</h4>
+			</div><!-- END .MODAL-HEADER -->
+			
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+					
+						<%= render "machine_fields", :f => f %>
+						
+					</div><!-- END .COL-MD-12 -->
+				</div><!-- END .ROW -->
+			</div><!-- END .MODAL-BODY -->
+			
+			<div class="modal-footer">
+				<%= f.submit "Save Equipment", class: "btn btn-primary" %>
+			
+				<button type="button" class="btn default" data-dismiss="modal">
+					Close
+				</button>
+			</div><!-- END .MODAL-FOOTER -->
+		<% end %><!-- END FORM -->
+		</div><!-- END MODAL-CONTENT -->
+	</div><!-- END .MODAL-DIALOG -->
+</div><!-- END #RESPONSIVE -->
+<!-- END MODAL FORM -->
 
 <!-- END PAGE CONTENT -->

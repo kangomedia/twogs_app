@@ -17,3 +17,21 @@ jQuery ->
 jQuery ->
 	$('.edit-button').click ->
         $('.delete-checkbox').toggle()
+
+jQuery ->	
+	$('.delete_image').hide();
+	
+	$(".machine-image").hover ->
+		$(this).find('.delete_image').toggle()
+		
+jQuery ->
+	$('.note-delete').hide();
+	
+	$(".list-group-item").hover ->
+		$(this).find('.note-delete').toggle()
+		
+jQuery ->
+	$('.document-delete').hide();
+
+	$(".icon-btn").hover ->
+		$(this).find('.document-delete').toggle()

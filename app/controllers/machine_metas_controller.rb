@@ -9,13 +9,15 @@ class MachineMetasController < ApplicationController
   end
 
   def update
+    @machine_meta = MachineMeta.find(params[:id])
+    if @machine_meta.save
+      flash[:success] = "Equipment part updated successfully."
+      redirect_to :back
+    end
   end
 
   def destroy
   end
-  
-  def add_image
-  end 
   
   def delete
     @delete_machine = MachineMeta.where(id: params[:machine_meta_ids]).delete_all

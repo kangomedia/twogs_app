@@ -3,6 +3,8 @@ class MachinesController < ApplicationController
   
   def index
     @machines = Machine.all
+    @machine = Machine.new
+    @machine.attachments.build
   end
 
   def new
@@ -18,14 +20,15 @@ class MachinesController < ApplicationController
     @taskable = @machine
     @tasks    = @taskable.tasks.order(:due_date => :asc)
     @task     = Task.new
-    @completed_tasks = @tasks.where(completed: true)
-    @machine.machine_metas.build.build_attachment
-    
+    @completed_tasks = @tasks.where(completed: true)  
+    @note     = Note.new
+    @notes    = @machine.notes
+    @document = Document.new
+    @documents = @machine.documents
   end
 
   def create
     @machine= Machine.new(machine_params)
-    
     if @machine.save
       flash[:success] = "Added New Equipment Successfully!"
       redirect_to machines_path
@@ -49,6 +52,7 @@ class MachinesController < ApplicationController
   def update
     @machine = Machine.find(params[:id])
     if @machine.update_attributes(machine_params)
+      MachineMeta.where(id: params[:machine_meta_ids]).delete_all
       flash[:success] = "Equipment updated"
       redirect_to machine_path(@machine)
     else
@@ -70,6 +74,6 @@ class MachinesController < ApplicationController
   
 private
   def machine_params
-    params.require(:machine).permit(:make, :model, :year, :serial, :status, machine_metas_attributes: [:id, :meta_value, :meta_key, :_destroy, attachment_attributes: [:id, :file]], attachments_attributes: [:id, :file])
+    params.require(:machine).permit(:make, :model, :value, :year, :serial, :status, machine_metas_attributes: [:id, :meta_value, :meta_key, :_destroy, attachment_attributes: [:id, :file]], attachments_attributes: [:id, :file])
   end
 end

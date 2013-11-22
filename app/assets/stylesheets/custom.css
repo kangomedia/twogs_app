@@ -16,3 +16,15 @@ a .panel-title {
 a:hover.accordion-toggle {
 	text-decoration:none;
 }
+
+.delete_image {
+	position:absolute;
+	bottom:10px;
+	right:10px;
+}
+
+.document-delete {
+	position:absolute;
+	top: -5px;
+	right: -5px;
+}

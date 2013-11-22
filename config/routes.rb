@@ -1,5 +1,5 @@
 TwogsApp::Application.routes.draw do
-  resources :assignments
+  resources :assignments, :notes, :documents
   resources :timesheets do
     resources :workdays
     collection do
@@ -8,6 +8,8 @@ TwogsApp::Application.routes.draw do
     end
   end
   
+  resources :attachments
+    
   resources :jobs do
     collection do
       put :delete
@@ -29,7 +31,6 @@ TwogsApp::Application.routes.draw do
   resources :machine_metas do
     collection do
       put :delete
-      put :add_image
     end
   end
   

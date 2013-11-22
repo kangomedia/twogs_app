@@ -10,8 +10,8 @@
 
 <div class="form-group">
 <%= f.label :year, class: "control-label" %>
-<%= f.select :year, ((Time.zone.now.year - 40)..(Time.zone.now.year + 1)).to_a.reverse, 
-				class:"form-control" %>
+<%= f.select(:year, ((Time.zone.now.year - 40)..(Time.zone.now.year + 1)).to_a.reverse, {}, 
+				 {:class => "form-control"} ) %>
 </div>
 
 <div class="form-group">
@@ -20,9 +20,14 @@
 </div>
 
 <div class="form-group">
+<%= f.label :value, class: "control-label" %>
+<%= f.text_field :value, class:"form-control" %>
+</div>
+
+<div class="form-group">
 <%= f.label :status, class: "control-label" %>
 <%= f.select :status, options_for_select([['Active', 1], ['Inactive', 2]]), 
-				 :prompt => 'Select One', class:"form-control" %>
+				 {:prompt => 'Select One'}, {:class => "form-control"} %>
 </div>
 
 <div class="form-group">
