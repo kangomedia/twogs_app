@@ -74,7 +74,7 @@
 													<%= assignment_form.text_field :hours, class: "form-control" %>
 												</div>
 												<div class="form-group">
-													<%= assignment_form.collection_select(:job_id, Job.where(status: true) << Job.new(:name => "New Job", :id => "0"), :id, :name, {:prompt => true}, { :class => "form-control assignment_job_id"}) %>
+													<%= assignment_form.collection_select(:job_id, Job.where(status: true) << Job.new(:name => "[Add New Job]", :id => "0"), :id, :name, {:prompt => true}, { :class => "form-control assignment_job_id"}) %>
 												</div>
 												<%= assignment_form.submit "Save", class: "btn green btn-xs" %>
 											</div>
