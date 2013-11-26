@@ -2,8 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$('.dropdown-toggle').dropdown();
-
-$('.dropdown input, .dropdown label').click ->
-    e.stopPropagation();
-
+jQuery ->
+	$(".assignment_job_id").live "change", ->
+		if ( $(this).val() == "0" )
+			$('#new_job').modal('show');

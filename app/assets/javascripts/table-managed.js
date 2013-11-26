@@ -120,15 +120,16 @@ var TableManaged = function () {
             $('#timesheets_list').dataTable({
                 "aoColumns": [
                   { "bSortable": false },
+                  {"iDataSort": 3},
                   null,
-                  null
+						null
                 ],
                 "aLengthMenu": [
                     [5, 15, 20, -1],
                     [5, 15, 20, "All"] // change per page values here
                 ],
                 // set the initial value
-                "iDisplayLength": 10,
+                "iDisplayLength": 5,
                 "sPaginationType": "bootstrap",
                 "oLanguage": {
                     "sLengthMenu": "_MENU_ ",

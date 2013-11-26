@@ -7,8 +7,10 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     if @job.save
-      flash[:success] = "Job added successfully."
-      redirect_to jobs_path
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js
+      end
     end
   end
   

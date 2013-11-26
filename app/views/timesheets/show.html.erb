@@ -74,7 +74,7 @@
 													<%= assignment_form.text_field :hours, class: "form-control" %>
 												</div>
 												<div class="form-group">
-													<%= assignment_form.collection_select(:job_id, Job.where(status: true) << Job.new(:name => "New Job", :id => "0"), :id, :name, {:prompt => true}, { :class => "form-control"}) %>
+													<%= assignment_form.collection_select(:job_id, Job.where(status: true) << Job.new(:name => "New Job", :id => "0"), :id, :name, {:prompt => true}, { :class => "form-control assignment_job_id"}) %>
 												</div>
 												<%= assignment_form.submit "Save", class: "btn green btn-xs" %>
 											</div>
@@ -103,6 +103,39 @@
 		<!-- END RESPONSIVE TABLE -->
 	</div>
 	<!-- END PORTLET BOX -->
+	
+	<!-- BEGIN NEW EMPLOYEE MODAL FORM -->
+	<div id="new_job" class="modal fade" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<%= form_for @job, :remote => true do |f| %>
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+					<h4 class="modal-title">New Job</h4>
+				</div><!-- END .MODAL-HEADER -->
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+
+							<%= render "jobs/job_form", :f => f %>
+
+						</div><!-- END .COL-MD-12 -->
+					</div><!-- END .ROW -->
+				</div><!-- END .MODAL-BODY -->
+
+				<div class="modal-footer">
+					<%= f.submit "Create Job", class: "btn btn-primary" %>
+
+					<button type="button" class="btn default" data-dismiss="modal">
+						Close
+					</button>
+				</div><!-- END .MODAL-FOOTER -->
+				<% end %><!-- END FORM -->
+			</div><!-- END MODAL-CONTENT -->
+		</div><!-- END .MODAL-DIALOG -->
+	</div><!-- END #RESPONSIVE -->
+	<!-- END MODAL FORM -->
 	
 </div>
 </div>

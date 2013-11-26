@@ -2,7 +2,7 @@ class TimesheetsController < ApplicationController
   
   def index
     @employees = Employee.where(status: true)
-    @timesheets = Timesheet.all
+    @timesheets = Timesheet.all.order("startdate DESC")
     @timesheet = Timesheet.new
     @workday = Workday.new
     @timesheet.workdays.build
@@ -33,6 +33,7 @@ class TimesheetsController < ApplicationController
     @timesheet = Timesheet.find(params[:id])
     @employees = Employee.all
     @assignment = Assignment.new
+    @job = Job.new
   end
   
   def current

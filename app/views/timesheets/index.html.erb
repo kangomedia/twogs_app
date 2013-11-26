@@ -88,8 +88,9 @@
 					<% @timesheets.each do |timesheet| %>
 						<tr class="odd gradeX">
 						   <td class="delete-checkbox"><%= check_box_tag "timesheet_ids[]", timesheet.id, false, class: "checkboxes"  %></td>
-						   <td><%= link_to timesheet.startdate.strftime("%m/%d/%Y"), timesheet_path(timesheet) %></td>
-							<td><%= link_to timesheet.enddate.strftime("%m/%d/%Y"), timesheet_path(timesheet) %></td>
+						   <td><%= link_to timesheet.startdate.strftime("%b %e, %Y %l:%M%p"), timesheet_path(timesheet) %></td>
+							<td><%= link_to timesheet.enddate.strftime("%b %e, %Y %l:%M%p"), timesheet_path(timesheet) %></td>
+							<td style="display:none;"><%= timesheet.startdate %></td>
 						</tr>
 					<% end %>
 					</tbody>
