@@ -70,7 +70,7 @@
 											<div class="form-group">
 											<%= f.label :year, class: "control-label" %>
 											<%= f.select :year, ((Time.zone.now.year - 40)..(Time.zone.now.year + 1)).to_a.reverse, 
-															class:"form-control" %>
+															{}, {class: "form-control"} %>
 											</div>
 											
 											<%= f.label :make, class: "control-label" %>
@@ -89,8 +89,8 @@
 											
 											<div class="form-group">
 											<%= f.label :status, class: "control-label" %>
-											<%= f.select :status, options_for_select([['Active', 1], ['Inactive', 2]]), 
-															 :prompt => 'Select One', class:"form-control" %>
+											<%= f.select :status, options_for_select([['Active', true], ['Inactive', false]], @machine.status), 
+															 { :prompt => 'Select One' }, { :class => "form-control"} %>
 											</div>
 											
 										</div><!-- END .COL-MD-12 -->

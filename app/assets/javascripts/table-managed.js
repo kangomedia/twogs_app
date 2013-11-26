@@ -69,7 +69,8 @@ var TableManaged = function () {
                 "aoColumns": [
                   { "bSortable": false },
                   null,
-                  null
+                  null,
+						null
                 ],
                 "aLengthMenu": [
                     [5, 15, 20, -1],
@@ -127,7 +128,7 @@ var TableManaged = function () {
                     [5, 15, 20, "All"] // change per page values here
                 ],
                 // set the initial value
-                "iDisplayLength": -1,
+                "iDisplayLength": 10,
                 "sPaginationType": "bootstrap",
                 "oLanguage": {
                     "sLengthMenu": "_MENU_ ",

@@ -50,8 +50,10 @@
 		
 				<tbody>
 				<% @employees.each do |employee| %>
+				<% if (employee.workdays.active(@timesheet)).any? %>
 					<tr>
 						<td><%= employee.full_name %></td>
+						
 						<% employee.workdays.active(@timesheet).each do |workday| %>
 							<td>
 							
@@ -72,7 +74,7 @@
 													<%= assignment_form.text_field :hours, class: "form-control" %>
 												</div>
 												<div class="form-group">
-													<%= assignment_form.collection_select(:job_id, Job.all, :id, :name, {:prompt => true}, { :class => "form-control"}) %>
+													<%= assignment_form.collection_select(:job_id, Job.where(status: true) << Job.new(:name => "New Job", :id => "0"), :id, :name, {:prompt => true}, { :class => "form-control"}) %>
 												</div>
 												<%= assignment_form.submit "Save", class: "btn green btn-xs" %>
 											</div>
@@ -92,6 +94,7 @@
 						<% end %>
 						<td><span class="label label-primary"><%= employee.assignments.active(@timesheet).sum('hours') %></span></td>
 					</tr>
+				<% end %>
 				<% end %>
 				</tbody>
 	

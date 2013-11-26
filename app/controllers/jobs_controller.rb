@@ -16,6 +16,16 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
   end
   
+  def update
+    @job = Job.find(params[:id])
+    if @job.update_attributes(job_params)
+      flash[:success] = "Job updated"
+      redirect_to jobs_path
+    else
+      render 'edit'
+    end
+  end
+  
   def delete
     Job.where(id: params[:job_ids]).delete_all
     flash[:success] = "Job successfully deleted."
@@ -24,6 +34,6 @@ class JobsController < ApplicationController
   
 private
   def job_params
-    params.require(:job).permit(:number, :name)
+    params.require(:job).permit(:number, :name, :status)
   end
 end

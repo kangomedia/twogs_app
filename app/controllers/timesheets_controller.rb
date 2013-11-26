@@ -1,7 +1,7 @@
 class TimesheetsController < ApplicationController
   
   def index
-    @employees = Employee.all
+    @employees = Employee.where(status: true)
     @timesheets = Timesheet.all
     @timesheet = Timesheet.new
     @workday = Workday.new

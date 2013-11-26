@@ -46,7 +46,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
     if @employee.update_attributes(employee_params)
       flash[:success] = "Employee Updated Successfully"
-      render 'edit'
+      redirect_to employees_path
     else
       render employee_path(employee)
     end
@@ -66,6 +66,6 @@ class EmployeesController < ApplicationController
   
 private
   def employee_params
-    params.require(:employee).permit(:first_name, :last_name, :wage)
+    params.require(:employee).permit(:first_name, :last_name, :wage, :status)
   end
 end

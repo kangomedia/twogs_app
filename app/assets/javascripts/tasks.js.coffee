@@ -10,3 +10,4 @@ jQuery.fn.submitOnCheck = ->
 
 jQuery ->
   $('.edit_task').submitOnCheck()
+

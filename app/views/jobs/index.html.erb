@@ -58,6 +58,7 @@
 						<th>Number</th>
 						<th>Name</th>
 						<th>Created On</th>
+						<th>Status</th>
 					</tr>
 					</thead>
 					
@@ -68,6 +69,11 @@
 							<td><%= link_to job.number, edit_job_path(job) %></td>
 							<td><%= link_to job.name, edit_job_path(job) %></td>
 							<td><%= link_to job.created_at.strftime("%B %e, %Y"), edit_job_path(job) %></td>
+							<td>
+								<%= link_to edit_job_path(job) do %>
+									<%= job.status == true ? "Active" : "Inactive" %>
+								<% end %>
+							</td>
 						</tr>
 					<% end %>
 					</tbody>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131122180417) do
+ActiveRecord::Schema.define(version: 20131125175050) do
 
   create_table "assignments", force: true do |t|
     t.integer  "workday_id"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20131122180417) do
     t.string   "wage"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "status",     default: true
   end
 
   create_table "jobs", force: true do |t|
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(version: 20131122180417) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "status",     default: true
   end
 
   create_table "machine_meta", force: true do |t|
