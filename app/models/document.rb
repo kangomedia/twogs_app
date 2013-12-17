@@ -3,10 +3,10 @@ class Document < ActiveRecord::Base
   has_attached_file :pdf,
   :storage => :s3, 
   :s3_credentials => { 
-    :access_key_id => "AKIAJYBWNPT3XLVRPGJA", 
-    :secret_access_key => "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" 
+    :access_key_id => "AKIAJ6QXR3XGAZFWGDHA", 
+    :secret_access_key => "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" 
   }, 
-  :bucket => "2gsapp"
+  :bucket => "TwoGS_App"
   
   validates :pdf,    presence: true
 end
