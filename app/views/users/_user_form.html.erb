@@ -30,6 +30,11 @@
 					<%= render "shared/attachment_fields", :f => attachment %>
 				<% end %>
 			</div>
+			
+			<div class="form-group">
+				<%= f.label :admin, class: "control-label" %>
+				<%= f.check_box :admin, {}, "t", "f" %>
+			</div>
 		
 		</div>
 	
